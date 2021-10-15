@@ -2,12 +2,12 @@
 - name: Initialize the Kubernetes cluster using kubeadm
   command: kubeadm init --apiserver-advertise-address="{{ ansible_ssh_host }}"  --apiserver-cert-extra-sans="{{ ansible_ssh_host }}"  --pod-network-cidr=192.168.0.0/16
 
-- name: Create Directory ~/.kube
+- name: Create Directory ~/.kube for default user
   file:
     path: "/home/{{ ansible_user }}/.kube"
     state: directory
 
-- name: Setup kubeconfig
+- name: Setup kubeconfig for default user
   ansible.builtin.copy: 
     remote_src: yes
     src: "/etc/kubernetes/admin.conf"
@@ -16,3 +16,18 @@
     group: "{{ ansible_user }}"
     mode: u=rw,g=r,o=r
     backup: yes
+
+- name: Create Directory ~/.kube
+  file:
+    path: "~/.kube"
+    state: directory
+
+- name: Setup kubeconfig
+  ansible.builtin.copy: 
+    remote_src: yes
+    src: "/etc/kubernetes/admin.conf"
+    dest: "~/.kube/config"
+    backup: yes
+
+- name: Add Network Policy to kubernetes cluster
+  command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
