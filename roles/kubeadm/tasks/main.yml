@@ -1,2 +1,13 @@
 ---
-# tasks file for roles/kubeadm
+## Installing kubernetes
+- name: Install kubernetes binaries for Ubuntu
+  include_tasks: kubernetes-ubuntu.yaml
+  when: ansible_facts['distribution'] == 'Ubuntu'
+
+- name: Install kubernetes binaries for Centos
+  include_tasks: kubernetes-centos.yaml
+  when: ansible_facts['distribution'] == 'CentOS'
+
+## Enabled service kubelet
+- name: Enabled service kubelet
+  include_tasks: systemctl-enable-kubelet.yaml

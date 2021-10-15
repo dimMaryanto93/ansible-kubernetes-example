@@ -1,0 +1,3 @@
+---
+- name: Pull k8s images from Google Cloud Registry
+  command: kubeadm config images pull

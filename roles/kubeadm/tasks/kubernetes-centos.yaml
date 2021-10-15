@@ -1,0 +1,11 @@
+---
+- name: Install Kubernetes binaries
+  yum: 
+    name: "{{ packages }}"
+    state: present
+    disable_excludes: kubernetes
+  vars:
+    packages:
+      - kubelet
+      - kubeadm 
+      - kubectl

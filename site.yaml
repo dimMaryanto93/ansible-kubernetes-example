@@ -1,6 +1,6 @@
 ---
 - name: Install docker-ce
-  hosts: all
+  hosts: ["dockerd"]
   become: true
   roles: 
     - docker/roles/common
@@ -8,12 +8,24 @@
 
 - name: Configure docker options
   become: true
-  hosts: all
+  hosts: ["dockerd"]
   roles:
     - docker/roles/options
 
 - name: Todo before install k8s cluster
-  hosts: all
+  hosts: ["dockerd", "kubernetes"]
   become: true
   roles:
     - common
+
+- name: Install kubeadm, kubernetes-cli, and kubelet
+  hosts: ["dockerd", "kubernetes"]
+  become: true
+  roles:
+    - kubeadm
+
+- name: Setup cluster for k8s control panel
+  hosts: ["k8s_control_panel"]
+  become: true
+  roles:
+    - k8s-cluster
