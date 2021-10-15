@@ -1,0 +1,11 @@
+---
+- name: Install docker-ce
+  hosts: all
+  roles: 
+    - docker/roles/common
+    - docker/roles/docker
+
+- name: Configure docker options
+  hosts: all
+  roles:
+    - docker/roles/options

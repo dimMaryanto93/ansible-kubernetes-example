@@ -1,0 +1,4 @@
+docker_storage_driver: overlay2
+docker_insecure_registries: ["your.registry-example.com:8086", "your.registry-example.com:8087"]
+docker_insecure_user: "<your_registry_user>"
+docker_insecure_password: "<your_registry_password>"
