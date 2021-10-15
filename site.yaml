@@ -23,9 +23,3 @@
   become: true
   roles:
     - kubeadm
-
-- name: Setup cluster for k8s control panel
-  hosts: ["k8s_control_panel"]
-  become: true
-  roles:
-    - k8s-cluster
