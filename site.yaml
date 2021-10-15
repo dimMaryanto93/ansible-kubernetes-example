@@ -12,5 +12,6 @@
 
 - name: Todo before install k8s cluster
   hosts: all
+  become: true
   roles:
     - common

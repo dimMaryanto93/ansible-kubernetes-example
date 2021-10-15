@@ -1,0 +1,11 @@
+---
+- name: Add Kubernetes Repository
+  yum_repository:
+    name: Kubernetes
+    description: Kubernetes using Google Cloud Repository
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    gpgkey:  "https://packages.cloud.google.com/yum/doc/yum-key.gpg\nhttps://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+    gpgcheck: yes
+    enabled: yes
+    file: kubernetes
+    state: present

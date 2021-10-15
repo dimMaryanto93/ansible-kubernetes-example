@@ -1,3 +1,14 @@
 ---
 - name: Disabling swap
   include_tasks: disable-swap-partision.yaml
+- name: Configure iptables to see bridged traffic
+  include_tasks: iptables-see-bridge.yaml
+
+## Add repository kubernetes
+- name: Add repository kubernetes from Google Cloud for Ubuntu
+  include_tasks: kubernetes-ubuntu-deps.yaml
+  when: ansible_facts['distribution'] == 'Ubuntu'
+
+- name: Add repository kubernetes from Google Cloud for CentOS
+  include_tasks: kubernetes-ubuntu-deps.yaml
+  when: ansible_facts['distribution'] == 'CentOS'

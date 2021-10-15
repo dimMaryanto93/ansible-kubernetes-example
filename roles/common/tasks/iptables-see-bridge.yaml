@@ -1,0 +1,16 @@
+---
+- name: Make sure the br_netfilter module is loaded
+  community.general.modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Node's iptables to see bridged traffic
+  sysctl:
+    name: "{{ item }}"
+    value: "1"
+    sysctl_set: yes
+    state: present
+    reload: yes
+  loop: 
+    - net.bridge.bridge-nf-call-ip6tables
+    - net.bridge.bridge-nf-call-iptables
