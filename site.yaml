@@ -9,3 +9,8 @@
   hosts: all
   roles:
     - docker/roles/options
+
+- name: Todo before install k8s cluster
+  hosts: all
+  roles:
+    - common
