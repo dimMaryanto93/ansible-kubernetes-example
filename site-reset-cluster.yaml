@@ -1,0 +1,6 @@
+---
+- name: Resetting kubernetes cluster
+  hosts: ["k8s_control_panel", "k8s_worker"]
+  become: true
+  roles:
+    - k8s-cluster/reset

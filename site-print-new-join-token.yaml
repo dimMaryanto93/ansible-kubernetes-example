@@ -1,0 +1,5 @@
+---
+- name: Print join token from k8s master role
+  hosts: ["k8s_control_panel"]
+  roles:
+    - k8s-cluster/print-join-command

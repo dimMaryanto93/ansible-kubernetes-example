@@ -13,13 +13,13 @@
     - docker/roles/options
 
 - name: Todo before install k8s cluster
-  hosts: ["dockerd", "kubernetes"]
+  hosts: ["kubernetes"]
   become: true
   roles:
     - common
 
 - name: Install kubeadm, kubernetes-cli, and kubelet
-  hosts: ["dockerd", "kubernetes"]
+  hosts: ["kubernetes"]
   become: true
   roles:
     - kubeadm

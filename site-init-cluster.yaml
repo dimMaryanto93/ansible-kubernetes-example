@@ -3,4 +3,4 @@
   hosts: ["k8s_control_panel"]
   become: true
   roles:
-    - k8s-cluster
+    - k8s-cluster/init

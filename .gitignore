@@ -20,3 +20,7 @@ host_vars/*
 
 ## keepfile
 !.gitkeep
+
+## upload files
+files/*
+!*/.gitkeep

@@ -2,5 +2,6 @@
 ## Initial setup kubernetes
 - name: Pull k8s image from Google Cloud Registry
   include_tasks: kubeadm-pull-image.yaml
+  
 - name: Init k8s Cluster for Controlpanel
   include_tasks: kubeadm-init.yaml
