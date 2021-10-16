@@ -1,5 +1,5 @@
 ---
-- name: Generate join command
+- name: Reset Kubernetes Cluster from master
   command: kubeadm reset --force
 
 - name: Create Directory ~/.kube
