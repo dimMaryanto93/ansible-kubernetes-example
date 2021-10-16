@@ -2,3 +2,5 @@
 # tasks file for roles/monitoring
 - name: Enabled monitoring tools | prometheus
   include_tasks: prometheus-helm-install.yaml
+  when: (ansible_facts['distribution'] == 'CentOS' and ansible_facts['distribution_major_version'] | int >= 8) or 
+        (ansible_facts['distribution'] == 'Ubuntu')

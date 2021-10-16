@@ -5,6 +5,7 @@
   become: true
   roles:
     - k8s-cluster/init
+    - networks/flannel
 
 ## required to run site.yaml before this playbooks
 - name: Setup monitoring tools for kubernetes

@@ -1,0 +1,14 @@
+---
+- name: Create Directory ~/kubernetes/networks
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "~/kubernetes/networks"
+
+# Download and apply manifest
+- name: Download flunnel network for kubernets cluster
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    dest: ~/kubernetes/networks/kube-flannel.yml
+    mode: '0664'

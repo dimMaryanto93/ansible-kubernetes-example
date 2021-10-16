@@ -1,0 +1,5 @@
+---
+- name: Apply Network Policy to kubernetes cluster
+  k8s:
+    state: present
+    src: ~/kubernetes/networks/kube-flannel.yml

@@ -28,24 +28,3 @@
     src: "/etc/kubernetes/admin.conf"
     dest: "~/.kube/config"
     backup: yes
-
-- name: Create Directory ~/kubernetes
-  file:
-    path: "{{ item }}"
-    state: directory
-  loop:
-    - "~/kubernetes/networks"
-    - "~/kubernetes/dashboard"
-    - "~/kubernetes/monitoring"
-
-# Download and apply manifest
-- name: Download flunnel network for kubernets cluster
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-    dest: ~/kubernetes/networks/kube-flannel.yml
-    mode: '0664'
-
-- name: Apply Network Policy to kubernetes cluster
-  k8s:
-    state: present
-    src: ~/kubernetes/networks/kube-flannel.yml

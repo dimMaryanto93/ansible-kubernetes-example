@@ -1,0 +1,3 @@
+---
+- name: Apply Network Policy to kubernetes cluster
+  command: kubectl apply -f ~/kubernetes/networks/kube-flannel.yml

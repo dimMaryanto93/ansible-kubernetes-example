@@ -1,0 +1,15 @@
+---
+# tasks file for roles/networks/flannel
+- name: Downloads manifest flannel network kubernetes plugin
+  include_tasks: get-files.yaml
+
+- name: Apply flannel network for not support k8s ansible script
+  include_tasks: ansible-command-apply.yaml
+  when: 
+  - ansible_facts['distribution'] == 'CentOS'
+  - ansible_facts['distribution_major_version'] | int <= 7
+
+- name: Apply flannel network for using k8s ansible script
+  include_tasks: ansible-command-apply.yaml
+  when: (ansible_facts['distribution'] == 'CentOS' and ansible_facts['distribution_major_version'] | int >= 8) or 
+        (ansible_facts['distribution'] == 'Ubuntu')
