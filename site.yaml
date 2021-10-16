@@ -17,6 +17,7 @@
   become: true
   roles:
     - common
+    - iptables
 
 - name: Install kubeadm, kubernetes-cli, and kubelet
   hosts: ["kubernetes"]
