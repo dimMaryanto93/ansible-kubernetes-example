@@ -17,7 +17,7 @@ Persiapan yang harus di lalukan, diantaranya
 
 ### Using Ansible Playbooks
 
-This is ansible for installing Docker CE, currently support for 
+This is ansible for installing Kubernetes cluste with dockershim as container runtime, currently support for 
 
 - CentOS >= 8
 - Ubuntu >= 20.4
