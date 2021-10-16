@@ -1,4 +1,5 @@
 ---
+## required to run site.yaml, site-init-cluster.yaml before this playbooks
 - name: Print join token from k8s master role
   hosts: ["k8s_control_panel"]
   roles:
