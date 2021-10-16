@@ -1,6 +1,14 @@
 ---
+- name: Install Kubernetes Module for Python
+  pip:
+    name: kubernetes
+    version: 11.0.0
+    state: present
+    executable: pip3
+  
 - name: Install Openshift Module for Python
   pip:
     name: openshift
-    state: latest
+    version: 0.11.0
+    state: present
     executable: pip3

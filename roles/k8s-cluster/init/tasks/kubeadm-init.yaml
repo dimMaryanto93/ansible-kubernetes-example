@@ -46,4 +46,6 @@
     mode: '0664'
 
 - name: Apply Network Policy to kubernetes cluster
-  command: kubectl apply -f ~/kubernetes/networks/kube-flannel.yml
+  k8s:
+    state: present
+    src: ~/kubernetes/networks/kube-flannel.yml

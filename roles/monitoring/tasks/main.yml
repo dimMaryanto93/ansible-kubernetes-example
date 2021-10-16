@@ -1,2 +1,4 @@
 ---
 # tasks file for roles/monitoring
+- name: Enabled monitoring tools | prometheus
+  include_tasks: prometheus-helm-install.yaml

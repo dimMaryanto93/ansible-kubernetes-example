@@ -19,8 +19,8 @@ Persiapan yang harus di lalukan, diantaranya
 
 This is ansible for installing Docker CE, currently support for 
 
-- CentOS 7
-- Ubuntu 20.4
+- CentOS >= 8
+- Ubuntu >= 20.4
 
 This page show you step-step installing docker using Ansible. First install requirement using command:
 
