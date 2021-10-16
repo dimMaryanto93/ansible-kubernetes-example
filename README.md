@@ -27,3 +27,27 @@ This page show you step-step installing docker using Ansible. First install requ
 ```bash
 ansible-galaxy collection install -r requirements.yaml
 ```
+
+- Install package and do stuff
+
+```bash
+ansible-playbook -i hosts.ini site.yaml
+```
+
+- Create k8s control-panel cluster, and setup the stuff
+
+```bash
+ansible-playbook -i hosts.ini site-init-cluster.yaml
+```
+
+- Join the cluster
+
+```bash
+ansible-playbook -i hosts.ini site-join-cluster.yaml
+```
+
+- If you want reset your entires cluster using `site-reset-cluster.yaml`
+
+```bash
+ansible-playbook -i hosts.ini site-reset-cluster.yaml
+```
