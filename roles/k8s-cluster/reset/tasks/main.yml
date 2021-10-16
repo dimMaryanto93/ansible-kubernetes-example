@@ -1,3 +1,13 @@
 ---
 - name: Generate join command
   command: kubeadm reset --force
+
+- name: Create Directory ~/.kube
+  file:
+    path: /home/{{ ansible_user }}/.kube
+    state: absent
+
+- name: Create Directory ~/.kube on root
+  file:
+    path: ~/.kube
+    state: absent
