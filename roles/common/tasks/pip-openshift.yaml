@@ -1,0 +1,6 @@
+---
+- name: Install Openshift Module for Python
+  pip:
+    name: openshift
+    state: latest
+    executable: pip3

@@ -12,3 +12,7 @@
 - name: Add repository kubernetes from Google Cloud for CentOS
   include_tasks: kubernetes-centos-deps.yaml
   when: ansible_facts['distribution'] == 'CentOS'
+
+## Installing openshift module
+- name: Add Openshift client for Python module
+  include_tasks: pip-openshift.yaml
