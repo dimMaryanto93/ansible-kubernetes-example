@@ -28,6 +28,8 @@ This page show you step-step installing docker using Ansible. First install requ
 ansible-galaxy collection install -r requirements.yaml
 ```
 
+- Update your environment variables in `group_vars/all.yaml.example` then rename to `group_vars/all.yaml`
+
 - Install package and do stuff
 
 ```bash
