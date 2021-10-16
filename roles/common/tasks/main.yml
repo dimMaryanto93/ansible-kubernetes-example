@@ -10,5 +10,5 @@
   when: ansible_facts['distribution'] == 'Ubuntu'
 
 - name: Add repository kubernetes from Google Cloud for CentOS
-  include_tasks: kubernetes-ubuntu-deps.yaml
+  include_tasks: kubernetes-centos-deps.yaml
   when: ansible_facts['distribution'] == 'CentOS'
