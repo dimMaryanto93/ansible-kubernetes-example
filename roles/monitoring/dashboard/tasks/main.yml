@@ -12,3 +12,47 @@
     release_namespace: "{{ kubernetes.dashboard.namespace }}"
     create_namespace: true
   when: kubernetes.dashboard.enabled | bool
+
+- name: Patch resource on service/kubernetes-dashboard
+  k8s:
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: kubernetes-dashboard
+        namespace: "{{ kubernetes.dashboard.namespace }}"
+      spec:
+        type: NodePort
+        ports:
+        - nodePort: 30106
+          port: 443
+          protocol: TCP
+          targetPort: 8443
+  when: kubernetes.prometheus.enabled | bool
+
+- name: Create service account for dashboard
+  k8s:
+    definition:
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: admin-user
+        namespace: "{{ kubernetes.dashboard.namespace }}"
+  when: kubernetes.prometheus.enabled | bool
+
+- name: Create Cluster Role Binding for dashboard
+  k8s:
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRoleBinding
+      metadata:
+        name: admin-user
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: cluster-admin
+      subjects:
+        - kind: ServiceAccount
+          name: admin-user
+          namespace: "{{ kubernetes.dashboard.namespace }}"
+  when: kubernetes.prometheus.enabled | bool
