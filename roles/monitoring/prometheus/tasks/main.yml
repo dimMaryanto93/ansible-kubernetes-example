@@ -48,6 +48,7 @@
         name: prometheus-prometheus-server-pv
         namespace: "{{ kubernetes.prometheus.namespace }}"
       spec:
+        storageClassName: manual
         accessModes:
           - ReadWriteOnce
         capacity:
