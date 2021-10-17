@@ -11,6 +11,9 @@ kubernetes:
   dashboard:
     enabled: false
     namespace: kubernetes-dashboard
+  prometheus:
+    enabled: false
+    namespace: gitlab-managed-apps
   apiserver: 
     advertise_address: {{ ansible_host }}
     cert_extra_sans: 
