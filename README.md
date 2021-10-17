@@ -10,6 +10,13 @@ by default, submodule using my hosted gitlab repository you can change or just c
 
 - [docker module](https://github.com/dimMaryanto93/ansible-docker-example)
 
+such as
+
+```bash
+git clone <this-github-repo>
+git clone <docker-module-repo> roles/docker
+```
+
 ## Ansible - User Guide
 
 Persiapan yang harus di lalukan, diantaranya
