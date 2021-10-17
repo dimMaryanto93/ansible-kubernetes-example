@@ -3,7 +3,7 @@
   kubernetes.core.helm_repository:
     name: kubernetes-dashboard
     repo_url: "https://kubernetes.github.io/dashboard/"
-  when: kubernetes.dashboard.enabled
+  when: kubernetes.dashboard.enabled | bool
 
 - name: Deploy latest version of Kubernetes dashboard chart
   kubernetes.core.helm:
@@ -11,4 +11,4 @@
     chart_ref: kubernetes-dashboard/kubernetes-dashboard
     release_namespace: "{{ kubernetes.dashboard.namespace }}"
     create_namespace: true
-  when: kubernetes.dashboard.enabled
+  when: kubernetes.dashboard.enabled | bool
