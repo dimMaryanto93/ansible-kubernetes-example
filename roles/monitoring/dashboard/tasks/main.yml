@@ -3,10 +3,12 @@
   kubernetes.core.helm_repository:
     name: kubernetes-dashboard
     repo_url: "https://kubernetes.github.io/dashboard/"
+  when: kubernetes.dashboard.enabled
 
-- name: Deploy latest version of Prometheus chart inside monitoring namespace (and create it)
+- name: Deploy latest version of Kubernetes dashboard chart
   kubernetes.core.helm:
     name: kubernetes-dashboard
     chart_ref: kubernetes-dashboard/kubernetes-dashboard
     release_namespace: "{{ kubernetes.dashboard.namespace }}"
     create_namespace: true
+  when: kubernetes.dashboard.enabled

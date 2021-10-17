@@ -7,7 +7,10 @@ docker_insecure_password: "<your_registry_password>"
 ## kubernetes config
 kubernetes:
   control_panel:
-    node_isolation: true
+    node_isolation: false
+  dashboard:
+    enabled: false
+    namespace: kubernetes-dashboard
   apiserver: 
     advertise_address: {{ ansible_host }}
     cert_extra_sans: 
