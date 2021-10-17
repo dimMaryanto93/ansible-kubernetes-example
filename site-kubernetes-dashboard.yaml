@@ -4,3 +4,13 @@
   roles:
     - monitoring/dashboard
     - monitoring/prometheus
+  vars: 
+    kubernetes:
+      control_panel:
+        node_isolation: true
+      dashboard:
+        enabled: true
+        namespace: kubernetes-dashboard
+      prometheus:
+        enabled: true
+        namespace: gitlab-managed-apps
