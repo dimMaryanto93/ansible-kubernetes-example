@@ -6,7 +6,7 @@ Besauce this repo has a git submodule, you need clone with `--recursive` option 
 git clone --recursive <repo-url>
 ```
 
-by default, submodule using my gitlab repository you can change or just clone namualy at github
+by default, submodule using my gitlab repository you can change or just clone manualy at github
 
 - [docker module](https://github.com/dimMaryanto93/ansible-docker-example)
 
