@@ -5,10 +5,12 @@
     repo_url: "https://prometheus-community.github.io/helm-charts"
   when: kubernetes.prometheus.enabled | bool
 
-- name: Deploy latest version of prometheus chart
+## Update file ../templates/values.yaml from https://gitlab.com/gitlab-org/project-templates/cluster-management/-/raw/master/applications/prometheus/values.yaml
+- name: Deploy latest version of prometheus
   kubernetes.core.helm:
     name: prometheus
     chart_ref: prometheus-community/prometheus
     release_namespace: "{{ kubernetes.prometheus.namespace }}"
     create_namespace: true
+    release_values : "{{ lookup('template', 'values.yaml') | from_yaml }}"
   when: kubernetes.prometheus.enabled | bool
