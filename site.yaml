@@ -19,8 +19,9 @@
     - common
     - iptables
 
-- name: Install kubeadm, kubernetes-cli, and kubelet
+- name: Install kubeadm, kubernetes-cli, kubelet, and helm
   hosts: ["kubernetes"]
   become: true
   roles:
     - kubeadm
+    - helm

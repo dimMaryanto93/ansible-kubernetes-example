@@ -1,2 +1,3 @@
 ---
 # tasks file for roles/dashboard
+- name: Copy kubernetes service account to 
