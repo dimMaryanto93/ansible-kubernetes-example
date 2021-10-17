@@ -14,3 +14,49 @@
     create_namespace: true
     release_values : "{{ lookup('template', 'values.yaml') | from_yaml }}"
   when: kubernetes.prometheus.enabled | bool
+
+- name: Patch resource on pvc/prometheus-prometheus-server
+  k8s:
+    definition:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: prometheus-prometheus-server
+        namespace: "{{ kubernetes.prometheus.namespace }}"
+      spec:
+        volumeMode: Filesystem
+        volumeName: prometheus-prometheus-server-pv
+  when: kubernetes.prometheus.enabled | bool
+
+- name: Create Directory /var/lib/prometheus/data for storing data
+  file:
+    path: "/var/lib/prometheus/data"
+    state: directory
+    mode: u=rwx,g=rwx,o=rwx
+
+- name: Create persistence volume for storing data link by pvc/prometheus-prometheus-server
+  k8s:
+    definition:
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        labels:
+          app: prometheus
+          component: server
+          heritage: Helm
+          release: prometheus
+        name: prometheus-prometheus-server-pv
+        namespace: "{{ kubernetes.prometheus.namespace }}"
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        capacity:
+          storage: 10Gi
+        claimRef:
+          apiVersion: v1
+          kind: PersistentVolumeClaim
+          name: prometheus-prometheus-server
+          namespace: "{{ kubernetes.prometheus.namespace }}"
+        hostPath:
+          path: "/var/lib/prometheus/data"
+  when: kubernetes.prometheus.enabled | bool
