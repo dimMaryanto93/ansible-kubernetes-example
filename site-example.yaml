@@ -1,6 +1,0 @@
-## required to run site.yaml before this playbooks
-- name: Setup cluster for k8s control panel
-  hosts: ["k8s_control_panel"]
-  become: true
-  roles:
-    - monitoring
