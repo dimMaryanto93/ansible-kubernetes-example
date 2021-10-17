@@ -5,11 +5,12 @@
   become: true
   roles:
     - k8s-cluster/init
+    - k8s-cluster/cpanel-isolation
     - networks/flannel
 
-## required to run site.yaml before this playbooks
-- name: Setup monitoring tools for kubernetes
-  hosts: ["k8s_control_panel"]
-  become: true
-  roles:
-    - monitoring
+# ## required to run site.yaml before this playbooks
+# - name: Setup monitoring tools for kubernetes
+#   hosts: ["k8s_control_panel"]
+#   become: true
+#   roles:
+#     - monitoring

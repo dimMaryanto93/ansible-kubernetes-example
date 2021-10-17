@@ -1,0 +1,7 @@
+---
+# tasks file for roles/k8s-cluster/cpanel-isolation
+- name: Control panel node isolation (Optional)
+  command: kubectl taint nodes --all node-role.kubernetes.io/master-
+  when: not kubernetes.control_panel.node_isolation
+  register: node_isolation_tained
+  failed_when: node_isolation_tained.rc != 1 and node_isolation_tained.rc != 0

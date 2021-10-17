@@ -2,4 +2,4 @@
 # vars file for roles/dashboard
 kubernetes:
   dashboard:
-    namespace: kubernetes-dashboard-head
+    namespace: k8s-dashboard

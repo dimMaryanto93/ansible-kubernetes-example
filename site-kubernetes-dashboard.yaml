@@ -1,0 +1,5 @@
+- name: Install kubernetes-dashboard using helm
+  hosts: ["k8s_control_panel"]
+  become: true
+  roles:
+    - monitoring/dashboard
