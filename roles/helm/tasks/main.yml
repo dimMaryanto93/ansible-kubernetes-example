@@ -34,5 +34,4 @@
     dest: "{{ helm_bin_path }}"
     mode: 0755
     remote_src: true
-  become: true
   when: helm_download is changed
