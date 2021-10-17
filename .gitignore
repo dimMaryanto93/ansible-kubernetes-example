@@ -21,6 +21,5 @@ host_vars/*
 ## keepfile
 !.gitkeep
 
-## upload files
-files/*
-!*/.gitkeep
+## ignore folder files
+/files/*

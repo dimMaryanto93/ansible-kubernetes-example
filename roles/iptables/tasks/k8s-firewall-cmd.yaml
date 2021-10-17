@@ -1,42 +1,16 @@
 ---
-- name: Add firewalld for Kubernetes API server
+- name: Add firewalld for 
   ansible.posix.firewalld:
-    port: 6443/tcp
+    port: "{{ item }}"
     permanent: yes
     state: enabled
     zone: public
-
-- name: Add firewalld for etcd server client API
-  ansible.posix.firewalld:
-    port: 2379-2380/tcp
-    permanent: yes
-    state: enabled
-    zone: public
-
-- name: Add firewalld for Kubelet API
-  ansible.posix.firewalld:
-    port: 10250/tcp
-    permanent: yes
-    state: enabled
-    zone: public
-
-- name: Add firewalld for kube-scheduler
-  ansible.posix.firewalld:
-    port: 10259/tcp
-    permanent: yes
-    state: enabled
-    zone: public
-
-- name: Add firewalld for kube-controller-manager
-  ansible.posix.firewalld:
-    port: 10257/tcp
-    permanent: yes
-    state: enabled
-    zone: public
-
-- name: Add firewalld for NodePort Services
-  ansible.posix.firewalld:
-    port: 30000-32767/tcp
-    permanent: yes
-    state: enabled
-    zone: public
+  loop: 
+    - 6443/tcp # Kubernetes API server
+    - 2379-2380/tcp # etcd server client API
+    - 10250/tcp # Kubelet API
+    - 10259/tcp # kube-scheduler
+    - 10257/tcp # kube-controller-manager
+    - 30000-32767/tcp # NodePort Services
+  notify: 
+    - Reload firewalld
