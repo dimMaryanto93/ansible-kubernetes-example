@@ -1,0 +1,13 @@
+---
+- name: Add rules for Kubernetes on Ubuntu
+  community.general.ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop: 
+    - "6443" # Kubernetes API server
+    - "2379:2380" # etcd server client API
+    - "10250" # Kubelet API
+    - "10259" # kube-scheduler
+    - "10257" # kube-controller-manager
+    - "30000:32767" # NodePort Services

@@ -3,3 +3,7 @@
 - name: Add Ports to firewall rule for CentOS
   include_tasks: k8s-firewall-cmd.yaml
   when: ansible_facts['distribution'] == 'CentOS'
+
+- name: Add Ports to firewall rule for Ubuntu
+  include_tasks: k8s-ufw-cmd.yaml
+  when: ansible_facts['distribution'] == 'Ubuntu'

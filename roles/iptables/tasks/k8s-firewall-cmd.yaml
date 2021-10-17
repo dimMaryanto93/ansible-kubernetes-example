@@ -1,5 +1,5 @@
 ---
-- name: Add firewalld for 
+- name: Add rules for Kubernetes on CentOS
   ansible.posix.firewalld:
     port: "{{ item }}"
     permanent: yes
